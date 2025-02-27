@@ -12,6 +12,8 @@ Josh Lavroff: joshlavroff
 
 Krish Kothari: krish-nyu
 
+Keith Dusling: kdusling56
+
 
 ## User stories
 1. As a user, I want to be able to track my treadmill workouts (pace, distance, incline, calories), so that I can increase my stamina.  
@@ -20,6 +22,8 @@ Krish Kothari: krish-nyu
 4. As a beginner to the gym, I want to be able to find exercises tailored to my fitness goals so that I can plan my workouts effectively.
 5. As a fitness enthusiast, I want to participate in fitness challenges with my friends or the broader NYU community so that I can stay engaged and motivated.
 6. As an NYU student, I want to easily view a list of campus gyms along with their available equipment and facilities so that I can choose the best location for my workouts.
+7. As an experienced lifter, I want to be able to track my personal bests and see how my lifts have improved.
+8. As someone recovering from an injury, I want to be able to select low-impact exercises so that I can stay active without risking further injury.
 
 ## Steps necessary to run the software
 
