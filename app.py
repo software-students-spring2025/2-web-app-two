@@ -8,6 +8,13 @@ def login():
         return redirect(url_for('homepage'))
     return render_template("login.html")
 
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        return redirect(url_for('homepage'))
+    return render_template("register.html")
+
 @app.route("/homepage")
 def homepage():
     return render_template("homepage.html")

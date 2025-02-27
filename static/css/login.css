@@ -1,0 +1,62 @@
+#loginBars {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;      
+    width: 100%;              
+}
+
+#loginBars label {
+    color:white;
+    margin-bottom: 10px; 
+    margin-top:25px;
+}
+
+#loginBars button {
+    padding: 10px;
+    background-color: #4cc250;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 270px;   
+    max-width: 500px;
+    border:none;
+    margin-top: 20px;
+    border: 1.5px solid black;
+    transition: transform 0.35s ease;
+}
+
+
+#loginBars input[type="text"], input[type="password"] {
+    margin-bottom: 20px;  
+    padding: 10px;
+    color: black;
+    width: 250px;      
+    max-width: 500px;
+    border: 5px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+#loginBars button:hover {
+    background-color: #2d6731;
+    transform: scale(1.1);
+}
+
+
+#registerText {
+    color: white;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+a {
+    color: rgb(142, 164, 255);
+}
+
+a:visited {
+    color: rgb(142, 164, 255);
+}
+
