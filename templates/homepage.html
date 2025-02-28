@@ -3,9 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <title>Homepage</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/homepage.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     </head>
-    <body>
-        <h1>Homepage</h1>
+    <body id="bodyLogin">
+
+        <div class="transparentBar">
+            <h1 class="mainHeader">Homepage</h1>
+        </div>
+
+        <h2>Fitness App</h2>
+
+        <div class="buttonPanels">
+            <a href="/workouts" class="panel">
+                <button type="button">
+                    <img src="/static/icons/exercise_bicycle.svg" class="buttonIcon"> Workouts
+                </button>
+            </a>
+            <a href="/food" class="panel">
+                <button type="button">
+                    <img src="/static/icons/nutrition.svg" class="buttonIcon"> Nutrition
+                </button>
+            </a>
+
+            <a href="/friends" class="panel">
+                <button type="button">
+                    <img src="static/icons/people.svg" class="buttonIcon"> Friends
+                </button>
+            </a>
+
+            <a href="/profile" class="panel">
+                <button type="button">
+                    <img src="static/icons/ui_user_profile.svg" class="buttonIcon"> My Profile
+                </button>
+            </a>
+        </div>
+
+
     </body>
     
 </html>

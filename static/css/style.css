@@ -1,0 +1,30 @@
+.mainHeader {
+    text-align: center;
+    color: white;
+    margin:0px;
+    font-size:35px;
+}
+
+#bodyLogin {
+    background: linear-gradient(to bottom, #420098, #67008c);
+    margin: 0;
+    font-family: "Red Hat Text";
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;         
+    height: 100vh; 
+    background-size: cover; 
+}
+
+.transparentBar {
+    background-color: rgba(168, 168, 168, 0.197);
+    padding: 20px;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
