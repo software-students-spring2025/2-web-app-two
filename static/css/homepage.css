@@ -26,6 +26,10 @@
     text-decoration: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f1ca4cf69b4c914c6ffa4ad24983d549bc58d504
 .panel:hover {
     transform: scale(1.15);
     cursor: pointer;
