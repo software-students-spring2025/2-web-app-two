@@ -24,16 +24,16 @@ Keith Dusling: kdusling56
 6. As an NYU student, I want to easily view a list of campus gyms and where they are.
 7. As an experienced lifter, I want to be able to track my personal bests and see how my lifts have improved.
 8. As someone recovering from an injury, I want to be able to select low-impact exercises so that I can stay active without risking further injury.
-9. I want to be able to register an account.
-10. I want to be able to login to my account.
-11. I want to track my workouts so I can see my progress.
-12. I want to log my meals so I can keep track of my nutrition.
-13. I want to see which gyms are open when I want to workout.
-14. I want to see the available equipment and facilities at the NYU gyms so that I can choose the best location for my workouts.
-15. I want to be able to edit incorrect workout entries.
-16. I want to be able to edit incorrect nutrition entries.
-17. I want to be able to delete incorrect workout entries.
-18. I want to be able to delete incorrect nutrituion entires.
+9. As a user, I want to be able to register an account.
+10. As a user, I want to be able to login to my account.
+11. As a beginner to the gym, I want to track my workouts so I can see my progress.
+12. As someone trying to lose weight, I want to log my meals so I can keep track of my nutrition.
+13. As someone looking for a gym, I want to see which gyms are open when I want to workout.
+14. As someone planning their workout, I want to see the available equipment and facilities at the NYU gyms so that I can choose the best location for my workouts.
+15. As a user, I want to be able to edit incorrect workout entries.
+16. As a user, I want to be able to edit incorrect nutrition entries.
+17. As a user, I want to be able to delete incorrect workout entries.
+18. As a user, I want to be able to delete incorrect nutrituion entires.
 
 ## Steps necessary to run the software
 
