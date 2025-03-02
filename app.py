@@ -63,13 +63,24 @@ def register():
 
 @login_required
 def homepage():
-    if request.method == "POST":
-        return redirect(url_for('gyms'))
     return render_template("homepage.html")
 
 @app.route("/gyms")
 def gyms():
     return render_template("gyms.html")
+
+@app.route("/friends")
+def friends():
+    current_user_id = ObjectId(current_user.id)
+    
+    users = mongo.db.login.find({"_id": {"$ne": current_user_id}}) 
+
+    user_list = []
+    for user in users:
+        user['_id'] = str(user['_id']) 
+        user_list.append(user)
+
+    return render_template("friends.html", users=user_list)
 
 if __name__ == "__main__":
     app.run(debug=True)
