@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Other Users</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/friends.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    </head>
+    <body id="bodyLogin">
+
+        <div class="transparentBar">
+            <h1 class="mainHeader">Other Users</h1>
+        </div>
+
+        <h2></h2>
+        <div class="buttonPanels">
+            {% for user in users %}
+                <div class="panel">
+                    <img src="/static/icons/ui_user_profile.svg" class="buttonIcon">
+                    <p>User: {{ user.username }}</p>  
+                    <button type="button">Add Friend</button>
+                </div>
+            {% else %}
+                <div class="panel">
+                    <p>No users found.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </body>
+    
+</html>

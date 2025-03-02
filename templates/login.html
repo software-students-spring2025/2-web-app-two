@@ -10,9 +10,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     </head>
     <body id="bodyLogin">
+
         <div class="transparentBar">
             <h1 class="mainHeader">Login</h1>
         </div>
+
+        {% if message %}
+            <div class="errorMessage" >
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
 
 
         <form action="/" method="POST" id="loginBars">
