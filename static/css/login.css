@@ -60,3 +60,7 @@ a:visited {
     color: rgb(142, 164, 255);
 }
 
+.errorMessage {
+    color:white;
+    font-size: 20px;
+}
