@@ -137,6 +137,7 @@ def add_workouts():
 
         workout_name = request.form["name"]
         workout_calories = request.form["calories"]
+        workout_dates = request.form["date"]
         workout_notes = request.form["notes"]
 
         mongo.db.login.update_one(
@@ -146,6 +147,7 @@ def add_workouts():
                     "workouts": {
                         "name": workout_name,
                         "calories": workout_calories,
+                        "date": workout_dates,
                         "notes": workout_notes
                     }
                 }
