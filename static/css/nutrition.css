@@ -1,0 +1,63 @@
+
+.buttonPanels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    align-items: center;
+}
+
+.panel {
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    cursor:pointer;
+    border: 2px solid black;
+    padding: 20px;
+    width: 175px;
+    height: 175px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    outline: none;
+    margin: 15px;
+    border-radius: 15px;
+    transition: transform 0.35s ease;
+    text-decoration: none;
+}
+
+
+.panel:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+
+button {
+    outline: none; 
+    border: none; 
+    background-color:white;
+    font-family: "Red Hat Text";
+    align-items:center;
+}
+
+button:hover {
+    cursor:pointer;
+    color: purple;
+}
+
+body {
+    font-family: "Red Hat Text";
+}
+button img {
+    width: 75px; 
+    height: 75px;
+    margin-bottom: 50px;
+}
+
+button img:hover {
+    cursor:pointer;
+}
+h2 {
+    color: white;
+}

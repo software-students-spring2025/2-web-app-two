@@ -82,5 +82,32 @@ def friends():
 
     return render_template("friends.html", users=user_list)
 
+@app.route("/food")
+def nutrition():   
+    current_user_id = ObjectId(current_user.id)
+    
+    try:
+        all_meals = mongo.db.login.find_one({"_id": current_user_id}) 
+
+        meals = [str(meal['name']) for meal in all_meals['meals']]
+    except:
+        meals=[]
+    
+    return render_template("nutrition.html", user_meals=meals)
+
+@app.route("/add_meal",methods = ["GET","POST"])
+def add_meal():
+    if request.method=="POST":
+        current_user_id = ObjectId(current_user.id)
+
+        meal_name=request.form["name"]
+        meal_calories=request.form["calories"]
+        meal_notes=request.form["notes"]
+        mongo.db.login.update_one({"_id": current_user_id},{"$push": {"meals": {"name": meal_name, "calories": meal_calories, "notes":meal_notes}}})
+
+        return redirect(url_for("nutrition"))
+    
+    return render_template("meal.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
