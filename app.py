@@ -65,6 +65,7 @@ def register():
 def homepage():
     return render_template("homepage.html")
 
+
 @app.route("/gyms")
 def gyms():
     return render_template("gyms.html")

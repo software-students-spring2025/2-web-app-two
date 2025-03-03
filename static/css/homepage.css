@@ -58,5 +58,9 @@ button img:hover {
     cursor:pointer;
 }
 h2 {
-    color: white;
+    color: white !important;
+}
+#logoutButton {
+    border: 2px solid black !important;
+    border-radius: 12px;
 }
