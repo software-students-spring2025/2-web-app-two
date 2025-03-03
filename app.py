@@ -73,7 +73,15 @@ def gyms():
 def friends():
     current_user_id = ObjectId(current_user.id)
     
-    users = mongo.db.login.find({"_id": {"$ne": current_user_id}}) 
+    search_query = request.args.get('search', '').strip()
+
+    if search_query:        
+        users = mongo.db.login.find({
+            "_id": {"$ne": current_user_id},
+            "username": {"$regex": search_query, "$options": "i"} 
+        })
+    else:
+        users = mongo.db.login.find({"_id": {"$ne": current_user_id}})
 
     user_list = []
     for user in users:

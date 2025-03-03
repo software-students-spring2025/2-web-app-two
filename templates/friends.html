@@ -16,6 +16,14 @@
         </div>
 
         <h2></h2>
+
+        <div class="searchBar">
+            <form action="{{ url_for('friends') }}" method="GET">
+                <input type="text" name="search" placeholder="Search for users..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    
         <div class="buttonPanels">
             {% for user in users %}
                 <div class="panel">
