@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Workouts</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/friends.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    </head>
+    <body id="bodyLogin">
+
+        <div class="transparentBar">
+            <h1 class="mainHeader">Workouts</h1>
+        </div>
+
+        <h2></h2>
+        <div class="buttonPanels">
+            <a href="/add_workouts" class="panel">
+                <button type="button">
+                    <img src="/static/icons/plus.svg" class="buttonIcon"> Add New Workout
+                </button>
+            </a>
+            {% for workout in workouts %}
+                <div class="panel">
+                    <img src="/static/icons/exercise_bicycle.svg" class="buttonIcon">
+                    <p>Workout: {{ workout['name'] }}</p>
+                    <button type="button">View/Edit Workout</button>
+                </div>
+                {% else %}
+                    <div class="panel">
+                        <p>No workouts found.</p>
+                    </div>
+            {% endfor %}
+        </div>
+
+
+    </body>
+    
+</html>

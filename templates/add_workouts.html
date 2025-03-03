@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Meal</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/login.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    </head>
+    <body id="bodyLogin">
+
+        <div class="transparentBar">
+            <h1 class="mainHeader">Add Workout</h1>
+        </div>
+
+        {% if message %}
+            <div class="errorMessage" >
+                <p>{{ message }}</p>
+            </div>
+        {% endif %}
+
+
+        <form action="/add_workouts" method="POST" id="loginBars">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="password">Calories:</label>
+            <input type="text" id="calories" name="calories">
+
+            <label for="notes">Notes:</label>
+            <input type="text" id="notes" name="notes">
+
+            <button type="submit" id="loginButton">Add</button>
+
+        </form>
+
+    </body>
+</html>
