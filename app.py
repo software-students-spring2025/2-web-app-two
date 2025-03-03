@@ -65,9 +65,22 @@ def register():
 def homepage():
     return render_template("homepage.html")
 
+
 @app.route("/gyms")
 def gyms():
     return render_template("gyms.html")
+
+@app.route("/workouts")
+def workouts():   
+    current_user_id = ObjectId(current_user.id)
+    
+    try:
+        all_user_data = mongo.db.login.find_one({"_id": current_user_id})
+
+        workouts = all_user_data.get('workouts', [])
+    except:
+        workouts = []
+    return render_template("workouts.html", workouts=workouts)
 
 @app.route("/friends")
 def friends():
@@ -116,6 +129,32 @@ def add_meal():
         return redirect(url_for("nutrition"))
     
     return render_template("meal.html")
+
+@app.route("/add_workouts", methods=["GET", "POST"])
+def add_workouts():
+    if request.method == "POST":
+        current_user_id = ObjectId(current_user.id)
+
+        workout_name = request.form["name"]
+        workout_calories = request.form["calories"]
+        workout_notes = request.form["notes"]
+
+        mongo.db.login.update_one(
+            {"_id": current_user_id},
+            {
+                "$push": {
+                    "workouts": {
+                        "name": workout_name,
+                        "calories": workout_calories,
+                        "notes": workout_notes
+                    }
+                }
+            }
+        )
+        return redirect(url_for("workouts"))
+    
+    return render_template("add_workouts.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
