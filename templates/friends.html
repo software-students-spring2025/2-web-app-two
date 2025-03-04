@@ -51,8 +51,8 @@
                 {% for user in users %}
                     <tr style="text-align: center; justify-content: center;">
                         <td>{{ user.username }}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Look at profile</button>
+                        <td>                
+                            <button type="button" class="btn btn-primary" href="{{ url_for('edit_meal', meal_id=meal['meal_id']) }}">Look at profile</button>
                         </td>
                     </tr>
                 {% else %}
