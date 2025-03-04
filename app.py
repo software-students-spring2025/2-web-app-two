@@ -321,6 +321,23 @@ def user_profile():
     return render_template("user_profile.html", username=username, workouts=workouts, meals=meals)
 
 
+@app.route("/404")
+def g404():
+    return render_template("404.html")
+
+@app.route("/Palladium")
+def palladium():
+    return render_template("palladium.html")
+
+@app.route("/brooklyn")
+def brooklyn_athletic_facility():
+    return render_template("brooklyn.html")
+
+@app.route("/paulson")
+def paulson_center():
+    return render_template("paulson.html")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
