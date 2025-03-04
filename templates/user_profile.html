@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Workouts</title>
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/friends.css">
+        <link rel="stylesheet" href="static/css/workouts.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body id="bodyLogin">
+
+        <div class="transparentBar">
+            <a href="/homepage"class="mainHeader">{{ username }}'s Profile</a>
+        </div>
+
+        <div class="table">
+            <h2 style="color:white; text-align: center; font-size: 30px;">Workout History</h2>
+            <table class="table table-hover table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Date</th>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if workouts and workouts|length > 0 %}
+                        {% for workout in workouts %}
+                            <tr>
+                                <td>{{ workout.name }}</td>
+                                <td>{{ workout.calories }}</td>
+                                <td>{{ workout.reps }}</td>
+                                <td>{{ workout.sets}}</td>
+                                <td>{{ workout.date }}</td> 
+                                <td>{{ workout.notes }}</td>
+                                
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr id="notFoundText">
+                            <td colspan="8">No workouts found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <div class="table">
+                <h2 style="color:white; text-align: center; font-size: 30px;">Meal History</h2>
+                <table class="table table-hover table">
+                    <thead>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Calories</th>
+                            <th>Date</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if meals and meals|length > 0 %}
+                            {% for meal in meals %}
+                                <tr>
+                                    <td>{{ meal.name }}</td>
+                                    <td>{{ meal.calories }}</td>
+                                    <td>{{ meal.date }}</td>
+                                    <td>{{ meal.notes }}</td>
+                            
+                                    
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="notFoundText">
+                                <td colspan="4">No meals found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+       
+
+    </body>
+    
+</html>
