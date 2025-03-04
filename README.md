@@ -37,7 +37,12 @@ Keith Dusling: kdusling56
 
 ## Steps necessary to run the software
 
-See instructions. Delete this line and place instructions to download, configure, and run the software here.
+1. Clone the repository.  
+2. Donwload the env file from discord chat  
+3. Rename the env file to .env (discord doesn't allow for hidden files)  
+4. Place .env file in root of the project directory  
+4. install dependancies (pip/pip3 install -r requirements.text)  
+5. Run application (python/python3 app.py)
 
 ## Task boards
 
