@@ -3,11 +3,14 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_pymongo import MongoClient, PyMongo
 import os
 from bson import ObjectId
+import dotenv 
+
+dotenv.load_dotenv()
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://AndrewJung03:hNIc9g8S9chCPoUM@project2.5hfm0.mongodb.net/WorkoutApp?retryWrites=true&w=majority&appName=project2"  
-app.config["MONGO_DBNAME"] = "WorkoutApp"
-app.config["SECRET_KEY"] = "asdasd123"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["MONGO_DBNAME"] = os.getenv("DB_NAME")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 mongo = PyMongo(app)
 
