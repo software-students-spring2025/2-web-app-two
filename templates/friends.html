@@ -52,8 +52,8 @@
                     <tr style="text-align: center; justify-content: center;">
                         <td>{{ user.username }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary">Look at profile</button>
-                        </td>
+                            <a href="{{ url_for('user_profile', user_id=user['_id']) }}" class="btn btn-primary">Look at profile</a>
+                        </td>                        
                     </tr>
                 {% else %}
                     <tr>

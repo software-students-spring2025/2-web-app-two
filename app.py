@@ -79,6 +79,7 @@ def workouts():
         all_user_data = mongo.db.login.find_one({"_id": current_user_id})
 
         workouts = all_user_data.get('workouts', [])
+        workouts.reverse()  
     except:
         workouts = []
     return render_template("workouts.html", workouts=workouts)
@@ -120,6 +121,8 @@ def nutrition():
         username = 'Unknown User'
         workouts = []
         meals = []
+    
+    meals.reverse()
 
     return render_template("/nutrition.html", username=username, workouts=workouts, meals=meals)
 
@@ -298,6 +301,25 @@ def delete_meal(meal_id):
     )
 
     return redirect(url_for("nutrition")) 
+
+
+from flask import request
+
+@login_required
+@app.route("/user_profile")
+def user_profile():   
+    user_id = request.args.get('user_id') 
+
+    user_id = ObjectId(user_id)
+
+    user_data = mongo.db.login.find_one({"_id": user_id})  
+            
+    username = user_data.get('username', 'Unknown User')
+    workouts = user_data.get('workouts', [])
+    meals = user_data.get('meals', [])
+
+    return render_template("user_profile.html", username=username, workouts=workouts, meals=meals)
+
 
 
 if __name__ == "__main__":
