@@ -5,16 +5,18 @@
         <title>Workouts</title>
         <link rel="stylesheet" href="static/css/style.css">
         <link rel="stylesheet" href="static/css/friends.css">
+        <link rel="stylesheet" href="static/css/workouts.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body id="bodyLogin">
 
         <div class="transparentBar">
-            <h1 class="mainHeader">Workouts</h1>
+            <a href="/homepage"class="mainHeader">Workouts</a>
         </div>
-
+        
         <h2></h2>
         <div class="buttonPanels">
             <a href="/add_workouts" class="panel">
@@ -22,7 +24,7 @@
                     <img src="/static/icons/plus.svg" class="buttonIcon"> Add New Workout
                 </button>
             </a>
-            {% for workout in workouts %}
+            <!--{% for workout in workouts %}
                 <div class="panel">
                     <img src="/static/icons/exercise_bicycle.svg" class="buttonIcon">
                     <p>Workout: {{ workout['name'] }}</p>
@@ -35,6 +37,54 @@
                     </div>
             {% endfor %}
         </div>
+        -->
+        <div class="table">
+            <table class="table table-hover table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Date</th>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                        <th>Notes</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if workouts and workouts|length > 0 %}
+                        {% for workout in workouts %}
+                            <tr>
+                                <td>{{ workout.name }}</td>
+                                <td>{{ workout.calories }}</td>
+                                <td>{{ workout.reps }}</td>
+                                <td>{{ workout.sets}}</td>
+                                <td>{{ workout.date }}</td> 
+                                <td>{{ workout.notes }}</td>
+                                <td>
+                                    <a href="{{ url_for('edit_workout', workout_id=workout['_id']) }}" class="btn btn-primary">
+                                            Edit
+                                    </a>                          
+                                </td>
+                                <td>
+                                    <form action="{{ url_for('delete_workout', workout_id=workout['_id']) }}" method="POST">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>                                    
+                                </td> 
+                        
+                                
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr id="notFoundText">
+                            <td colspan="8">No workouts found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        
 
 
     </body>

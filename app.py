@@ -65,11 +65,12 @@ def register():
 def homepage():
     return render_template("homepage.html")
 
-
+@login_required
 @app.route("/gyms")
 def gyms():
     return render_template("gyms.html")
 
+@login_required
 @app.route("/workouts")
 def workouts():   
     current_user_id = ObjectId(current_user.id)
@@ -82,6 +83,7 @@ def workouts():
         workouts = []
     return render_template("workouts.html", workouts=workouts)
 
+@login_required
 @app.route("/friends")
 def friends():
     current_user_id = ObjectId(current_user.id)
@@ -103,6 +105,7 @@ def friends():
 
     return render_template("friends.html", users=user_list)
 
+@login_required
 @app.route("/food")
 def nutrition():   
     current_user_id = ObjectId(current_user.id)
@@ -116,6 +119,7 @@ def nutrition():
     
     return render_template("nutrition.html", user_meals=meals)
 
+@login_required
 @app.route("/add_meal",methods = ["GET","POST"])
 def add_meal():
     if request.method=="POST":
@@ -130,23 +134,29 @@ def add_meal():
     
     return render_template("meal.html")
 
+@login_required
 @app.route("/add_workouts", methods=["GET", "POST"])
 def add_workouts():
     if request.method == "POST":
-        current_user_id = ObjectId(current_user.id)
 
+        current_user_id = ObjectId(current_user.id)
         workout_name = request.form["name"]
         workout_calories = request.form["calories"]
         workout_dates = request.form["date"]
         workout_notes = request.form["notes"]
+        workout_sets = request.form["sets"]
+        workout_reps = request.form["reps"]
 
         mongo.db.login.update_one(
             {"_id": current_user_id},
             {
                 "$push": {
                     "workouts": {
+                        "_id": ObjectId(),
                         "name": workout_name,
                         "calories": workout_calories,
+                        "reps": workout_reps,
+                        "sets": workout_sets,
                         "date": workout_dates,
                         "notes": workout_notes
                     }
@@ -156,6 +166,55 @@ def add_workouts():
         return redirect(url_for("workouts"))
     
     return render_template("add_workouts.html")
+
+@login_required
+@app.route("/edit_workout/<workout_id>", methods=["GET", "POST"])
+def edit_workout(workout_id):
+    current_user_id = ObjectId(current_user.id)
+
+    workout = mongo.db.login.find_one(
+        {"_id": current_user_id, "workouts._id": ObjectId(workout_id)},
+        {"workouts.$": 1} 
+    )
+
+    workout = workout["workouts"][0]
+
+    if request.method == "POST":
+        updated_name = request.form["name"]
+        updated_calories = request.form["calories"]
+        updated_reps = request.form["reps"]
+        updated_sets = request.form["sets"]
+        updated_date = request.form["date"]
+        updated_notes = request.form["notes"]
+
+        mongo.db.login.update_one(
+            {"_id": current_user_id, "workouts._id": ObjectId(workout_id)},
+            {
+                "$set": {
+                    "workouts.$.name": updated_name,
+                    "workouts.$.calories": updated_calories,
+                    "workouts.$.reps": updated_reps,
+                    "workouts.$.sets": updated_sets,
+                    "workouts.$.date": updated_date,
+                    "workouts.$.notes": updated_notes,
+                }
+            }
+        )
+
+        return redirect(url_for("workouts"))
+
+    return render_template("edit_workout.html", workout=workout)
+
+@login_required
+@app.route("/delete_workout/<workout_id>", methods=["POST"])
+def delete_workout(workout_id):
+    current_user_id = ObjectId(str(current_user.id)) 
+    mongo.db.login.update_one(
+        {"_id": current_user_id},
+        {"$pull": {"workouts": {"_id": ObjectId(workout_id)}}}
+    )
+
+    return redirect(url_for("workouts"))
 
 
 if __name__ == "__main__":

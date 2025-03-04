@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Workout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+</head>
+    <body id="bodyLogin">
+        <div class="transparentBar">
+            <h1 class="mainHeader">Edit Workout</h1>
+        </div>
+
+        <form action="{{ url_for('edit_workout', workout_id=workout['_id']) }}" method="POST" id="loginBars">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ workout['name'] }}">
+
+            <label for="calories">Calories:</label>
+            <input type="text" id="calories" name="calories" value="{{ workout['calories'] }}">
+
+            <label for="reps">Reps:</label>
+            <input type="text" id="reps" name="reps" value="{{ workout['reps'] }}">
+
+            <label for="sets">Sets:</label>
+            <input type="text" id="sets" name="sets" value="{{ workout['sets'] }}">
+
+            <label for="date">Date/Time:</label>
+            <input type="text" id="date" name="date" value="{{ workout['date'] }}">
+
+            <label for="notes">Notes:</label>
+            <input type="text" id="notes" name="notes" value="{{ workout['notes'] }}">
+
+            <button type="submit" id="submitButton">Update Workout</button>
+        </form>
+    </body>
+</html>

@@ -4,17 +4,19 @@
     flex-direction: row;
     justify-content: center;
     padding: 30px;
+    margin-top: 35px;
     align-items: center;
 }
 
 .panel {
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: white;
     cursor:pointer;
     border: 2px solid black;
     padding: 20px;
     width: 175px;
+    justify-content: space-between;
     height: 175px;
     justify-content: center;
     text-align: center;
@@ -45,9 +47,6 @@ button:hover {
     cursor:pointer;
 }
 
-body {
-    font-family: "Red Hat Text";
-}
 button img {
     width: 75px; 
     height: 75px;
@@ -57,10 +56,7 @@ button img {
 button img:hover {
     cursor:pointer;
 }
-h2 {
-    color: white !important;
-}
+
 #logoutButton {
     border: 2px solid black !important;
-    border-radius: 12px;
 }
