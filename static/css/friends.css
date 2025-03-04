@@ -61,3 +61,15 @@ button img:hover {
 h2 {
     color: white;
 }
+
+.searchBar {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#searchButton1 {
+    height:30px;
+    text-align: center;
+    justify-content: center;
+    padding: 0px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Meal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+</head>
+<body id="bodyLogin">
+    <div class="transparentBar">
+        <h1 class="mainHeader">Edit Meal</h1>
+    </div>
+
+    <form action="{{ url_for('edit_meal', meal_id=meal_id) }}" method="POST" id="loginBars">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ meal['name'] }}">
+
+        <label for="calories">Calories:</label>
+        <input type="text" id="calories" name="calories" value="{{ meal['calories'] }}">
+
+        <label for="date">Date/Time:</label>
+        <input type="text" id="date" name="date" value="{{ meal['date'] }}">
+
+        <label for="notes">Notes:</label>
+        <input type="text" id="notes" name="notes" value="{{ meal['notes'] }}">
+
+        <button type="submit" id="submitButton">Update Meal</button>
+    </form>
+</body>
+</html>

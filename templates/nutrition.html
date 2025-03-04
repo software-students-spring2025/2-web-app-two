@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="static/css/nutrition.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     </head>
     <body id="bodyLogin">
@@ -23,6 +24,8 @@
                     <p>Add New Meal</p>
                 </button>
             </a>
+
+            <!--
             {% for meal in user_meals %}
                 <div class="panel">
                     <img src="/static/icons/nutrition.svg" class="buttonIcon">
@@ -35,6 +38,52 @@
                 </div>
             {% endfor %}
         </div>
+    -->
+    <div class="table">
+        <h2 style="color:white; text-align: center; padding:20px">Meal History</h2>
+        <table class="table table-hover table">
+            <thead>
+                <tr text-align="center" justify-content="center">
+                    <th>Meal</th>
+                    <th>Calories</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if meals and meals|length > 0 %}
+                    {% for meal in meals %}
+                        <tr>
+                            <td>{{ meal.name }}</td>
+                            <td>{{ meal.calories }}</td>
+                            <td>{{ meal.date }}</td>
+                            <td>{{ meal.notes }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_meal', meal_id=meal['meal_id']) }}" class="btn btn-primary">
+                                    Edit
+                                </a>                          
+                            </td>
+                            <td>
+                                <form action="{{ url_for('delete_meal', meal_id=meal['meal_id']) }}" method="POST">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>  
+                            </td>
+                            
+                          
+                            
+                            
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr id="notFoundText">
+                        <td colspan="6">No meals found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
 
 
     </body>

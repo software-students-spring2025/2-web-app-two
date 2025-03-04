@@ -14,34 +14,16 @@
     <body id="bodyLogin">
 
         <div class="transparentBar">
-            <a href="/homepage"class="mainHeader">Workouts</a>
+            <a href="/homepage"class="mainHeader">My Profile</a>
         </div>
-        
-        <h2></h2>
-        <div class="buttonPanels">
-            <a href="/add_workouts" class="panel">
-                <button type="button">
-                    <img src="/static/icons/plus.svg" class="buttonIcon"> Add New Workout
-                </button>
-            </a>
-            <!--{% for workout in workouts %}
-                <div class="panel">
-                    <img src="/static/icons/exercise_bicycle.svg" class="buttonIcon">
-                    <p>Workout: {{ workout['name'] }}</p>
-                    <p>Date: {{workout['date']}}</p>
-                    <button type="button">View/Edit Workout</button>
-                </div>
-                {% else %}
-                    <div class="panel">
-                        <p>No workouts found.</p>
-                    </div>
-            {% endfor %}
+
+        <div style="color:white; padding-top:40px;">
+            <h2>Welcome, {{ username }}!</h2>
         </div>
-        -->
+
         <div class="table">
-            <h2 style="color:white; padding:20px; justify-content: center; text-align: center;">Workout History</h2>
+            <h2 style="color:white; text-align: center; font-size: 30px;">Workout History</h2>
             <table class="table table-hover table">
-                
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -50,8 +32,6 @@
                         <th>Reps</th>
                         <th>Sets</th>
                         <th>Notes</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,17 +44,6 @@
                                 <td>{{ workout.sets}}</td>
                                 <td>{{ workout.date }}</td> 
                                 <td>{{ workout.notes }}</td>
-                                <td>
-                                    <a href="{{ url_for('edit_workout', workout_id=workout['_id']) }}" class="btn btn-primary">
-                                            Edit
-                                    </a>                          
-                                </td>
-                                <td>
-                                    <form action="{{ url_for('delete_workout', workout_id=workout['_id']) }}" method="POST">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>                                    
-                                </td> 
-                        
                                 
                             </tr>
                         {% endfor %}
@@ -85,9 +54,38 @@
                     {% endif %}
                 </tbody>
             </table>
-        </div>
-        
 
+            <div class="table">
+                <h2 style="color:white; text-align: center; font-size: 30px;">Meal History</h2>
+                <table class="table table-hover table">
+                    <thead>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Calories</th>
+                            <th>Date</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if meals and meals|length > 0 %}
+                            {% for meal in meals %}
+                                <tr>
+                                    <td>{{ meal.name }}</td>
+                                    <td>{{ meal.calories }}</td>
+                                    <td>{{ meal.date }}</td>
+                                    <td>{{ meal.notes }}</td>
+                            
+                                    
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr id="notFoundText">
+                                <td colspan="4">No meals found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+       
 
     </body>
     

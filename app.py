@@ -111,28 +111,44 @@ def nutrition():
     current_user_id = ObjectId(current_user.id)
     
     try:
-        all_meals = mongo.db.login.find_one({"_id": current_user_id}) 
+        all_user_data = mongo.db.login.find_one({"_id": current_user_id})
 
-        meals = [str(meal['name']) for meal in all_meals['meals']]
+        username = all_user_data.get('username', 'Unknown User') 
+        workouts = all_user_data.get('workouts', [])
+        meals = all_user_data.get('meals', [])
     except:
-        meals=[]
-    
-    return render_template("nutrition.html", user_meals=meals)
+        username = 'Unknown User'
+        workouts = []
+        meals = []
+
+    return render_template("/nutrition.html", username=username, workouts=workouts, meals=meals)
 
 @login_required
-@app.route("/add_meal",methods = ["GET","POST"])
+@app.route("/add_meal", methods=["GET", "POST"])
 def add_meal():
-    if request.method=="POST":
+    if request.method == "POST":
         current_user_id = ObjectId(current_user.id)
+        meal_name = request.form["name"]
+        meal_calories = request.form["calories"]
+        meal_date = request.form["date"]
+        meal_notes = request.form["notes"]
 
-        meal_name=request.form["name"]
-        meal_calories=request.form["calories"]
-        meal_notes=request.form["notes"]
-        mongo.db.login.update_one({"_id": current_user_id},{"$push": {"meals": {"name": meal_name, "calories": meal_calories, "notes":meal_notes}}})
+        mongo.db.login.update_one(
+            {"_id": current_user_id}, 
+            {"$push": {
+                "meals": {
+                    "meal_id": ObjectId(),
+                    "name": meal_name,
+                    "calories": meal_calories,
+                    "date": meal_date,
+                    "notes": meal_notes
+                }
+            }}
+        )
 
-        return redirect(url_for("nutrition"))
-    
-    return render_template("meal.html")
+        return redirect(url_for("nutrition"))  
+    return render_template("meal.html") 
+
 
 @login_required
 @app.route("/add_workouts", methods=["GET", "POST"])
@@ -215,6 +231,73 @@ def delete_workout(workout_id):
     )
 
     return redirect(url_for("workouts"))
+
+
+@login_required
+@app.route("/my_profile")
+def my_profile():   
+    current_user_id = ObjectId(current_user.id)
+    
+    try:
+        all_user_data = mongo.db.login.find_one({"_id": current_user_id})
+
+        username = all_user_data.get('username', 'Unknown User') 
+        workouts = all_user_data.get('workouts', [])
+        meals = all_user_data.get('meals', [])
+    except:
+        username = 'Unknown User'
+        workouts = []
+        meals = []
+
+    return render_template("my_profile.html", username=username, workouts=workouts, meals=meals)
+
+@login_required
+@app.route("/edit_meal/<meal_id>", methods=["GET", "POST"])
+def edit_meal(meal_id):
+    current_user_id = ObjectId(current_user.id)
+
+    meal = mongo.db.login.find_one(
+        {"_id": current_user_id, "meals.meal_id": ObjectId(meal_id)},
+        {"meals.$": 1} 
+    )
+
+    if not meal:
+        return redirect(url_for("nutrition")) 
+
+    meal = meal["meals"][0]  
+
+    if request.method == "POST":
+        updated_name = request.form["name"]
+        updated_calories = request.form["calories"]
+        updated_date = request.form["date"]
+        updated_notes = request.form["notes"]
+
+        mongo.db.login.update_one(
+            {"_id": current_user_id, "meals.meal_id": ObjectId(meal_id)}, 
+            {
+                "$set": {
+                    "meals.$.name": updated_name,
+                    "meals.$.calories": updated_calories,
+                    "meals.$.date": updated_date,
+                    "meals.$.notes": updated_notes,
+                }
+            }
+        )
+
+        return redirect(url_for("nutrition"))  
+
+    return render_template("edit_meal.html", meal=meal, meal_id=meal_id)  
+
+@login_required
+@app.route("/delete_meal/<meal_id>", methods=["POST"])
+def delete_meal(meal_id):
+    current_user_id = ObjectId(str(current_user.id)) 
+    mongo.db.login.update_one(
+        {"_id": current_user_id},
+        {"$pull": {"meals": {"meal_id": ObjectId(meal_id)}}} 
+    )
+
+    return redirect(url_for("nutrition")) 
 
 
 if __name__ == "__main__":
