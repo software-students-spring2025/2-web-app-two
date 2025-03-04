@@ -42,7 +42,7 @@ Keith Dusling: kdusling56
 3. Rename the env file to .env (discord doesn't allow for hidden files).  
 4. Place .env file in root of the project directory.  
 5. Start a virtual enviorment.  
-6. install dependancies (pip/pip3 install -r requirements.text).   
+6. install dependancies (pip/pip3 install -r requirements.txt).   
 7. Run application (python/python3 app.py).  
 
 ## Task boards
