@@ -41,4 +41,4 @@ See instructions. Delete this line and place instructions to download, configure
 
 ## Task boards
 
-Shttps://github.com/software-students-spring2025/2-web-app-two/projects?query=is%3Aopen
+https://github.com/software-students-spring2025/2-web-app-two/projects?query=is%3Aopen
